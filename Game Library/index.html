@@ -15,7 +15,7 @@
 			<section data-role="page" id="index-page">
 				<section data-role="header" data-position="fixed"><h1>Game Library Organizer</h1></section>
 				<section data-role="content">
-					<a href="#addItem" data-role="button">Add a Game</a>
+					<a href="#addItem-page" data-role="button">Add a Game</a>
 				</section>
 				<section data-role="footer" data-position="fixed">
 					<nav data-role="navbar">
@@ -28,7 +28,40 @@
 			</section>
 			<section data-role="page" id="addItem-page">
 				<section data-role="header" data-position="fixed"><h1>Game Library Organizer</h1></section>
-				<section data-role="content"></section>
+				<section data-role="content">
+					<div data-role="fieldcontain">
+						<label for="console">Console:</label>
+						<select name="console" id="console">
+							<optgroup label="Consoles">
+								<option value="nes">Nintendo Entertainment System</option>
+								<option value="atari">Atari</option>
+								<option value="segaMasterSys">Sega Master System</option>
+								<option value="snes">Super Nintendo Entertainment System</option>
+								<option value="genesis">Sega Genesis</option>
+								<option value="neoGeo">Neo Geo</option>
+								<option value="saturn">Sega Saturn</option>
+								<option value="ps">PlayStation</option>
+								<option value="n64">Nintendo 64</option>
+								<option value="dreamcast">Dreamcast</option>
+								<option value="ps2">PlayStation 2</option>
+								<option value="gamecube">Nintendo GameCube</option>
+								<option value="xbox">Xbox</option>
+								<option value="ps3">PlayStation 3</option>
+								<option value="xbox360">Xbox 360</option>
+								<option value="wii">Nintendo Wii</option>
+								<option value="wiiu">Nintendo WiiU</option>
+								<option value="ps4">PlayStation 4</option>
+								<option value="nextxbox">Next Gen Xbox</option>
+							</optgroup>
+							<optgroup label="HandHeld">
+							</optgroup>
+						</select>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="title">Game Title:</label>
+						<input type="text" name="title" id="title" value="" placeholder="Enter a Game Title">
+					</div>
+				</section>
 				<section data-role="footer" data-position="fixed">
 					<nav data-role="navbar">
 						<ul>
