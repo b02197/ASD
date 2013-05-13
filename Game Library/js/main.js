@@ -1,3 +1,8 @@
 //Michael Eaton
 //ASD 1305
-//template
+//project
+
+$('#index-page').on('pageinit', function(){
+	
+	
+});
