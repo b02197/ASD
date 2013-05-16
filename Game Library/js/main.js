@@ -1,9 +1,10 @@
-$('#home').on('pageinit', function(){
+$('#index').on('pageinit', function(){
 	//code needed for home page goes here
 	$('#gameList').on('click', getData);
 	$('#listjson').on('click', autoFillData);
 	$('#listxml').on('click', autoFillData);
-	$('#clearData').on('click', clearLocal);
+	$('#clearData').on('click', clearLocalData);
+	
 });	
 		
 $('#addItem').on('pageinit', function(){
@@ -176,14 +177,15 @@ var	removeGame = function (){
 	}		
 };
 		
-var clearLocal = function(){
-	if (localStorage.length === 0) {
-			alert("There are no saved games.");
-		} else {
-			localStorage.clear();
-			alert("All games have been deleted.");
-			window.location.reload();
-		}
+var clearLocalData = function(){
+	console.log("fire");
+	if(localStorage === 0){
+		alert("There is nothing in local storage.")
+	}else{
+		localStorage.clear();
+		alert("Local storage has been deleted.")
+		window.location.reload();
+		return false;
+	}
 };
-
 
