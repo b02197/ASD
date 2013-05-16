@@ -1,44 +1,44 @@
 {
 	"game1":{
-		"Console : " : "PS3",
-		"Title : " : "Uncharted 3",
-		"Rating : " : "8",
-		"Notes or Review : " : "Fun game, Review coming soon!!"
+		"Console : " : "Dreamcast",
+		"Title : " : "Sonic Adventure 2",
+		"Rating : " : "9",
+		"Notes or Review : " : "Spent a summer playing this game as a kid. And still pick it up from time to time."
 	},
 	"game2":{
-		"Console : " : "PS3",
-		"Title : " : "Uncharted 3",
-		"Rating : " : "8",
-		"Notes or Review : " : "Fun game, Review coming soon!!"
+		"Console : " : "GameCube",
+		"Title : " : "Luigi's Mansion",
+		"Rating : " : "7",
+		"Notes or Review : " : "Good game, Can get a little boring at times."
 	},
 	"game3":{
-		"Console : " : "PS3",
-		"Title : " : "Uncharted 3",
-		"Rating : " : "8",
-		"Notes or Review : " : "Fun game, Review coming soon!!"
+		"Console : " : "GameCube",
+		"Title : " : "Resident Evil 4",
+		"Rating : " : "9",
+		"Notes or Review : " : "Great game!!! Ienjoyed this game a lot."
 	},
 	"game4":{
-		"Console : " : "PS3",
-		"Title : " : "Uncharted 3",
-		"Rating : " : "8",
-		"Notes or Review : " : "Fun game, Review coming soon!!"
+		"Console : " : "Dreamcast",
+		"Title : " : "Shenmue",
+		"Rating : " : "10",
+		"Notes or Review : " : "I have spent hours on this game."
 	},
 	"game5":{
-		"Console : " : "PS3",
-		"Title : " : "Uncharted 3",
-		"Rating : " : "8",
-		"Notes or Review : " : "Fun game, Review coming soon!!"
+		"Console : " : "Dreamcast",
+		"Title : " : "Shenmue 2",
+		"Rating : " : "9",
+		"Notes or Review : " : "Had to import this game to play it. Great game but i felt that the first one was better."
 	},
 	"game6":{
-		"Console : " : "PS3",
-		"Title : " : "Uncharted 3",
+		"Console : " : "PS2",
+		"Title : " : "Grand Theft Auto Vice Citt",
 		"Rating : " : "8",
-		"Notes or Review : " : "Fun game, Review coming soon!!"
+		"Notes or Review : " : "Loved the motorcycles in this game."
 	},
 	"game7":{
 		"Console : " : "PS3",
-		"Title : " : "Uncharted 3",
-		"Rating : " : "8",
-		"Notes or Review : " : "Fun game, Review coming soon!!"
+		"Title : " : "Assassin's Creed 3",
+		"Rating : " : "9",
+		"Notes or Review : " : "Had fun with this game. I need to go back through it and finish all the side things."
 	}
 };

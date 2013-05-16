@@ -3,54 +3,54 @@
 		<console>PS3</console>
 		<title>Uncharted 3</title>
 		<rate>9</rate>
-		<note>great game</note>
+		<note>Fun game but kinda short.</note>
 	</game>
 	<game>
-		<console>PS3</console>
-		<title>Uncharted 3</title>
+		<console>Xbox 360</console>
+		<title>Halo 3</title>
+		<rate>6</rate>
+		<note>Not big on shooters.</note>
+	</game>
+	<game>
+		<console>PlayStation Vita</console>
+		<title>Persona 4</title>
+		<rate>8</rate>
+		<note>Fun game. already have 20 hours into it and i am 3/4 the way through it.</note>
+	</game>
+	<game>
+		<console>Nintendo Entertainment System</console>
+		<title>Legend of Zelda</title>
+		<rate>9</rate>
+		<note>Classic.</note>
+	</game>
+	<game>
+		<console>Super Nintendo Entertainment System</console>
+		<title>Legend of Zelda: Link to the Past</title>
 		<rate>9</rate>
 		<note>great game</note>
 	</game>
 	<game>
 		<console>PS3</console>
 		<title>Uncharted 3</title>
-		<rate>9</rate>
-		<note>great game</note>
+		<rate>10</rate>
+		<note>I have loved this game since i was a kid.</note>
 	</game>
 	<game>
-		<console>PS3</console>
-		<title>Uncharted 3</title>
-		<rate>9</rate>
-		<note>great game</note>
+		<console>PS2</console>
+		<title>Metal Gear Solid 2</title>
+		<rate>7</rate>
+		<note>I have beat this game on all difficulties.</note>
 	</game>
 	<game>
-		<console>PS3</console>
-		<title>Uncharted 3</title>
-		<rate>9</rate>
-		<note>great game</note>
+		<console>Dreamcast</console>
+		<title>Sonic Adventure</title>
+		<rate>8</rate>
+		<note>Great graphics for its time.</note>
 	</game>
 	<game>
-		<console>PS3</console>
-		<title>Uncharted 3</title>
-		<rate>9</rate>
-		<note>great game</note>
-	</game>
-	<game>
-		<console>PS3</console>
-		<title>Uncharted 3</title>
-		<rate>9</rate>
-		<note>great game</note>
-	</game>
-	<game>
-		<console>PS3</console>
-		<title>Uncharted 3</title>
-		<rate>9</rate>
-		<note>great game</note>
-	</game>
-	<game>
-		<console>PS3</console>
-		<title>Uncharted 3</title>
-		<rate>9</rate>
-		<note>great game</note>
+		<console>Wii</console>
+		<title>New Super Mario Bros.</title>
+		<rate>6</rate>
+		<note>Redo of a classic. It's ok but not the greatest.</note>
 	</game>
 </games>
