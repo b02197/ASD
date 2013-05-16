@@ -1,30 +1,33 @@
-//Michael Eaton
-//ASD 1305
-//project
-
-$('#index').on('pageinit', function () {
-    
-});
-
-$('#addItem').on('pageinit', function () {
-});
-
+$('#home').on('pageinit', function(){
+	//code needed for home page goes here
+	$('#gameList').on('click', getData);
+	$('#getJSON').on('click', autoFillData);
+	$('#getXML').on('click', autoFillData);
+	$('#clearData').on('click', clearLocal);
+});	
+		
 $('#addItem').on('pageinit', function(){
-	delete $.validator.methods.date;
-	var myForm = $('#addForm');
-	myForm.validate({
-		invalidHandler: function(form, validator) {
-		},
-		submitHandler: function() {
-			var data = myForm.serializeArray();
+
+		var myForm = $('#addForm');
+		    myForm.validate({
+			invalidHandler: function(form, validator) {
+			},
+			submitHandler: function() {
+		var data = myForm.serializeArray();
 			saveData(data);
 		}
 	});
-
+	
+	//any other code needed for addItem page goes here
+	
+});
+$('#gameList').on('pageinit', function(){
+	getData(false);
 });
 
+//The functions below can go inside or outside the pageinit function for the page in which it is needed.
 
-var autoFill = function (){
+var autoFillData = function (){
  	var type = $(this).attr('id');
  	
  	if (type === 'getXML') {
@@ -41,7 +44,7 @@ var autoFill = function (){
 					string += '{"Console":"' + item.find('console').text() + '",';
 					string += '"Title":"' + item.find('title').text() + '",';
 					string += '"Rating":"' + item.find('rate').text() + '",';
-					string += '"Notes and Review":"' + item.find('note').text() + '",';
+					string += '"Notes and Review":"' + item.find('note').text() + '"}';
 					console.log(string);
 
 					var id = Math.floor(Math.random()*99999999);
@@ -54,7 +57,7 @@ var autoFill = function (){
 				console.log(result);
 			}
 		});
-	}  else {		// JSON
+	}  else {
   		$.ajax({
 			url: 'js/data.json',
 			type: 'GET',
@@ -75,6 +78,88 @@ var autoFill = function (){
 		});
 	}
 };
+var getData = function(load){
+	var labels = ["Console: ", "Game Title: ", "Rating: ", "Notes and Review: "];
+	if (localStorage.length === 0) {
+		autoFillData();
+	}
+
+		var appendLocation = $('#gameSelect').html("");
+		load = false;
+	
+
+
+	for (var i = 0, j = localStorage.length; i < j; i++) {
+		var key = localStorage.key(i);
+		var value = localStorage.getItem(key);
+		var obj = JSON.parse(value);
+
+			var makeEntry = $('<div></div>')
+				.attr('data-role', 'collapsible')
+				.attr('data-mini', 'true')
+				.attr('id', key)
+				.appendTo(appendLocation)
+			;
+
+			var makeH3 = $('<h3></h3>')
+				.html('#console'.value + " - " +'#title'.value)
+				.appendTo(makeEntry)
+			;
+
+			var makeList = $('<ul></ul>').appendTo(makeEntry);
+			var counter = 0;
+			for (var k in obj) {
+				var makeLi = $('<li></li>')
+					.html(labels[counter] + obj[k])
+					.appendTo(makeList)
+				;
+				counter++;
+			}
+
+			var buttonHolder = $('<div></div>').attr('class', 'ui-grid-a').appendTo(makeEntry);
+			var editButtonDiv = $('<div></div>').attr('class', 'ui-block-a').appendTo(buttonHolder);
+			var removeButtonDiv = $('<div></div>').attr('class', 'ui-block-b').appendTo(buttonHolder);
+			var editButton = $('<a></a>')
+				.attr('data-role', 'button')
+				.attr('href', '#addItem')
+				.html('Edit')
+				.data('key', key)
+				.appendTo(editButtonDiv)
+				.on('click', editGame)
+			;
+			var removeButton = $('<a></a>')
+				.attr('data-role', 'button')
+				.attr('href', '#')
+				.html('Remove')
+				.data('key', key)
+				.appendTo(removeButtonDiv)
+				.on('click', removeGame)
+			;
+			$(makeEntry).trigger('create');
+		}
+		$(appendLocation).trigger('create');
+}
+var editGame = function (){
+	var key = $(this).data('key');
+	var stuff = localStorage.getItem(key);
+	var trip = JSON.parse(stuff);
+
+	
+	$('#console').val(game.console);
+	$('#title').val(game.title);
+	$('#rate').val(game.rate);
+	$('#note').val(game.note);
+};
+
+var	removeGame = function (){
+	var ask = confirm("Are you sure you want to delete this game?");
+	if (ask) {
+		localStorage.removeItem($(this).data('key'));
+		window.location.reload();
+	} else {
+		alert("Game wasn't deleted.");
+	}		
+};
 
 
 var saveData = function(data){
@@ -90,10 +175,21 @@ var saveData = function(data){
 		newGame.rate = data[2].value;
 		newGame.note = data[3].value;
 
-		// Save data into local storage, use Stringify to convert object to string
 		localStorage.setItem(id, JSON.stringify(newGame));
 		$('saveGameButton').html('Save Game').removeData('key');
 		alert("Game Saved");
 		$.mobile.changePage('#index');
-
 }; 
+			
+var clearLocal = function(){
+	if (localStorage.length === 0) {
+			alert("There are no saved games.");
+		} else {
+			localStorage.clear();
+			alert("All games have been deleted.");
+			window.location.reload();
+			return false;
+		}
+};
+
+

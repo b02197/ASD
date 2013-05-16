@@ -1,6 +1,44 @@
-var newGame = {
-	"Console : " : "PS3",
-	"Title : " : "Uncharted 3",
-	"Rating : " : "8",
-	"Notes or Review : " : "Fun game, Review coming soon!!"
+{
+	"game1":{
+		"Console : " : "PS3",
+		"Title : " : "Uncharted 3",
+		"Rating : " : "8",
+		"Notes or Review : " : "Fun game, Review coming soon!!"
+	},
+	"game2":{
+		"Console : " : "PS3",
+		"Title : " : "Uncharted 3",
+		"Rating : " : "8",
+		"Notes or Review : " : "Fun game, Review coming soon!!"
+	},
+	"game3":{
+		"Console : " : "PS3",
+		"Title : " : "Uncharted 3",
+		"Rating : " : "8",
+		"Notes or Review : " : "Fun game, Review coming soon!!"
+	},
+	"game4":{
+		"Console : " : "PS3",
+		"Title : " : "Uncharted 3",
+		"Rating : " : "8",
+		"Notes or Review : " : "Fun game, Review coming soon!!"
+	},
+	"game5":{
+		"Console : " : "PS3",
+		"Title : " : "Uncharted 3",
+		"Rating : " : "8",
+		"Notes or Review : " : "Fun game, Review coming soon!!"
+	},
+	"game6":{
+		"Console : " : "PS3",
+		"Title : " : "Uncharted 3",
+		"Rating : " : "8",
+		"Notes or Review : " : "Fun game, Review coming soon!!"
+	},
+	"game7":{
+		"Console : " : "PS3",
+		"Title : " : "Uncharted 3",
+		"Rating : " : "8",
+		"Notes or Review : " : "Fun game, Review coming soon!!"
+	}
 };
