@@ -1,8 +1,8 @@
 $('#home').on('pageinit', function(){
 	//code needed for home page goes here
 	$('#gameList').on('click', getData);
-	$('#getJSON').on('click', autoFillData);
-	$('#getXML').on('click', autoFillData);
+	$('#listjson').on('click', autoFillData);
+	$('#listxml').on('click', autoFillData);
 	$('#clearData').on('click', clearLocal);
 });	
 		
@@ -30,7 +30,7 @@ $('#gameList').on('pageinit', function(){
 var autoFillData = function (){
  	var type = $(this).attr('id');
  	
- 	if (type === 'getXML') {
+ 	if (type === 'listxml') {
 		$.ajax({
 			url: 'js/data.xml',
 			type: 'GET',
@@ -95,22 +95,16 @@ var getData = function(load){
 		var obj = JSON.parse(value);
 
 			var makeEntry = $('<div></div>')
-				.attr('data-role', 'collapsible')
-				.attr('data-mini', 'true')
+				.attr('data-role', 'listview')
 				.attr('id', key)
 				.appendTo(appendLocation)
 			;
 
-			var makeH3 = $('<h3></h3>')
-				.html('#console'.value + " - " +'#title'.value)
-				.appendTo(makeEntry)
-			;
-
 			var makeList = $('<ul></ul>').appendTo(makeEntry);
 			var counter = 0;
-			for (var k in obj) {
+			for (var z in obj) {
 				var makeLi = $('<li></li>')
-					.html(labels[counter] + obj[k])
+					.html(labels[counter] + obj[z])
 					.appendTo(makeList)
 				;
 				counter++;
@@ -139,27 +133,6 @@ var getData = function(load){
 		}
 		$(appendLocation).trigger('create');
 }
-var editGame = function (){
-	var key = $(this).data('key');
-	var stuff = localStorage.getItem(key);
-	var trip = JSON.parse(stuff);
-
-	
-	$('#console').val(game.console);
-	$('#title').val(game.title);
-	$('#rate').val(game.rate);
-	$('#note').val(game.note);
-};
-
-var	removeGame = function (){
-	var ask = confirm("Are you sure you want to delete this game?");
-	if (ask) {
-		localStorage.removeItem($(this).data('key'));
-		window.location.reload();
-	} else {
-		alert("Game wasn't deleted.");
-	}		
-};
 
 
 var saveData = function(data){
@@ -180,7 +153,29 @@ var saveData = function(data){
 		alert("Game Saved");
 		$.mobile.changePage('#index');
 }; 
-			
+	
+var editGame = function (){
+	var key = $(this).data('key');
+	var stuff = localStorage.getItem(key);
+	var game = JSON.parse(stuff);
+
+	
+	$('#console').val(game.console);
+	$('#title').val(game.title);
+	$('#rate').val(game.rate);
+	$('#note').val(game.note);
+};
+
+var	removeGame = function (){
+	var ask = confirm("Are you sure you want to delete this game?");
+	if (ask) {
+		localStorage.removeItem($(this).data('key'));
+		window.location.reload();
+	} else {
+		alert("Game wasn't deleted.");
+	}		
+};
+		
 var clearLocal = function(){
 	if (localStorage.length === 0) {
 			alert("There are no saved games.");
@@ -188,7 +183,6 @@ var clearLocal = function(){
 			localStorage.clear();
 			alert("All games have been deleted.");
 			window.location.reload();
-			return false;
 		}
 };
 
