@@ -26,6 +26,31 @@ $('#gameList').on('pageinit', function(){
 	getData(false);
 	
 });
+$('#about').on('pageinit', function(){
+	console.log("working");
+	$.ajax({
+		url: '_view/type',
+		dataType:'json',
+		success: function(data){
+		console.log(data);
+			$.each(data.rows, function(index, type){
+				var console = type.value.Console;
+				var title = type.value.Title;
+				var rating = type.value.Rating
+				var notes = type.value.Notes;
+				
+				$('#typeList').append(
+					$('<li>').append(
+						$('<a>').attr("href","#")
+							.text(title)
+							
+					)
+				);
+			});
+			$('#typeList').listview('refresh');
+		}
+	});
+});
 
 //The functions below can go inside or outside the pageinit function for the page in which it is needed.
 
@@ -34,7 +59,7 @@ var autoFillData = function (){
  	
  	if (type === 'listxml') {
 		$.ajax({
-			url: 'js/data.xml',
+			url: 'data.xml',
 			type: 'GET',
 			dataType: 'xml',
 			success: function(result){
@@ -61,7 +86,7 @@ var autoFillData = function (){
 		});
 	}  else {
   		$.ajax({
-			url: 'js/data.json',
+			url: 'data.json',
 			type: 'GET',
 			dataType: 'json',
 			success: function(result){
