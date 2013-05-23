@@ -34,7 +34,7 @@ var autoFillData = function (){
  	
  	if (type === 'listxml') {
 		$.ajax({
-			url: 'js/data.xml',
+			url: 'data.xml',
 			type: 'GET',
 			dataType: 'xml',
 			success: function(result){
@@ -61,7 +61,7 @@ var autoFillData = function (){
 		});
 	}  else {
   		$.ajax({
-			url: 'js/data.json',
+			url: 'data.json',
 			type: 'GET',
 			dataType: 'json',
 			success: function(result){
