@@ -1,6 +1,6 @@
 function(doc){
-	if(doc.type.substr(0, 3) === "fun"){
-		emit(doc.type,{
+	if(doc._id !== '_design/gameliborg'){
+		emit([doc._id, doc._rev],{
 			"Console": doc.console,
 			"Title": doc.title,
 			"Rating": doc.rating,

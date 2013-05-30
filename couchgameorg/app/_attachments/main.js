@@ -1,10 +1,63 @@
+/*$(document).on('pageinit', "#displayItem", function(){
+	$.couch.db("gameorganizer").view("gameliborg/type",{
+		success: function(data){
+		console.log(data);
+			$.each(data.rows, function(index, type){
+				var console = type.value.Console;
+				var title = type.value.Title;
+				var rating = type.value.Rating
+				var notes = type.value.Notes; 
+				
+				$('#itemView').append(
+					$('<li>').append(
+						$('<a>').attr("href","game.html?game=" + title)
+							.text(title)
+							
+					)
+				);
+			});
+			$('#itemView').listview('refresh');
+		}
+	});
+});*/
+
+/*var urlVars = function(){
+	var urlData = $($.mobile.activePage).data("url");
+	var urlParts = urlData.split('?');
+	var urlPairs = urlParts[1].split('&');
+	var urlValues = {};
+	for (pair in urlPairs){
+		var keyValue = urlPairs[pair].split('=');
+		var key = decodeURIComponent(keyValue[0]);
+		var value = decodeURIComponent(keyValue[1]);
+		urlValues[key] = value;	
+	}
+	console.log(urlData);
+	console.log(urlPairs);
+	console.log(urlParts);
+	console.log(urlValues);
+	return urlValues;
+};
+
+$(document).on('pageinit', '#game', function(){
+	var games = urlVars()["game"];
+	$.couch.db("gameorganizer").view("gameliborg/type", {
+		key: "console:" + console
+		
+	});
+	
+	
+});
+*/
+
+
 $('#index').on('pageinit', function(){
 	//code needed for home page goes here
 	$('#gameList').on('click', getData);
-	$('#listjson').on('click', autoFillData);
-	$('#listxml').on('click', autoFillData);
-	$('#clearData').on('click', clearLocalData);
-	
+	//$('#listjson').on('click', autoFillData);
+	//$('#listxml').on('click', autoFillData);
+	//$('#clearData').on('click', clearLocalData);
+
 });	
 		
 $('#addItem').on('pageinit', function(){
@@ -32,7 +85,7 @@ $('#about').on('pageinit', function(){
 		url: '_view/type',
 		dataType:'json',
 		success: function(data){
-		console.log(data);
+		//console.log(data);
 			$.each(data.rows, function(index, type){
 				var console = type.value.Console;
 				var title = type.value.Title;
@@ -54,7 +107,7 @@ $('#about').on('pageinit', function(){
 
 //The functions below can go inside or outside the pageinit function for the page in which it is needed.
 
-var autoFillData = function (){
+/*var autoFillData = function (){
  	var type = $(this).attr('id');
  	
  	if (type === 'listxml') {
@@ -104,116 +157,126 @@ var autoFillData = function (){
 			}
 		});
 	}
-};
-var getData = function(load){
-	var labels = ["Console: ", "Game Title: ", "Rating: ", "Notes and Review: "];
-	if (localStorage.length === 0) {
-		autoFillData();
-		window.location.reload();
-	}
-
-		var appendLocation = $('#gameSelect').html("");
-		load = false;
+};*/
+var getData = function(){
+	var labels = ["Console: ", "Game Title: ", "Rating: ", "Notes and Review: "];	
+	var appendLoc = $('#gameSelect').html("");
 	
-
-
-	for (var i = 0, j = localStorage.length; i < j; i++) {
-		var key = localStorage.key(i);
-		var value = localStorage.getItem(key);
-		var obj = JSON.parse(value);
-
-			var makeEntry = $('<div></div>')
-				.attr('data-role', 'listview')
-				.attr('id', key)
-				.appendTo(appendLocation)
-			;
-
-			var makeList = $('<ul></ul>').appendTo(makeEntry);
-			var counter = 0;
-			for (var z in obj) {
-				var makeLi = $('<li></li>')
-					.html(labels[counter] + obj[z])
-					.appendTo(makeList)
-				;
-				counter++;
-			}
-
-			var buttonHolder = $('<div></div>').attr('class', 'ui-grid-a').appendTo(makeEntry);
-			var editButtonDiv = $('<div></div>').attr('class', 'ui-block-a').appendTo(buttonHolder);
-			var removeButtonDiv = $('<div></div>').attr('class', 'ui-block-b').appendTo(buttonHolder);
-			var editButton = $('<a></a>')
-				.attr('data-role', 'button')
-				.attr('href', '#addItem')
-				.html('Edit')
-				.data('key', key)
-				.appendTo(editButtonDiv)
-				.on('click', editGame)
-			;
-			var removeButton = $('<a></a>')
-				.attr('data-role', 'button')
-				.attr('href', '#')
-				.html('Remove')
-				.data('key', key)
-				.appendTo(removeButtonDiv)
-				.on('click', removeGame)
-			;
-			$(makeEntry).trigger('create');
-		}
-		$(appendLocation).trigger('create');
-}
-
+	$.couch.db('gameorganizer').view('gameliborg/type', {
+		success: function(data){
+			//console.log(data);
+			$.each(data.rows, function(index,type){
+				var makeDiv = $('<div>')
+					.attr('data-role', 'collapsible')
+					.attr('id', type.key)
+					.appendTo(appendLoc);
+					
+				var makeTitle = $('<h3>')
+					.html(type.value.Title)
+					.appendTo(makeDiv);
+					
+				var makeUl = $('<ul>').appendTo(makeDiv)
+				var counter = 0;
+				for(var z in type.value){
+					var makeLi = $('<li>')
+						.html(labels[counter] + type.value[z])
+						.appendTo(makeUl);
+						
+						counter++
+				}
+				
+				var buttonPlace = $('<div>').attr('class','ui-grid-a').appendTo(makeDiv);
+				var editButDiv = $('<div>').attr('class', 'ui-block-a').appendTo(buttonPlace);
+				var revButDiv = $('<div>').attr('class', 'ui-block-b').appendTo(buttonPlace);
+				var editBut = $('<a>')
+					.attr('data-role', 'button')
+					.attr('href', '#addItem')
+					.html('Edit')
+					.data('key', type.key[0])
+					.data('rev', type.key[1])
+					.appendTo(editButDiv)
+					.on('click', editGame);
+					
+				var revBut = $('<a>')
+					.attr('data-role', 'button')
+					.attr('href', '#')
+					.html('Delete')
+					.data('key', type.key[0])
+					.data('rev', type.key[1])
+					.appendTo(revButDiv)
+					.on('click', removeGame);
+					
+					//console.log(type.key[0]);
+					//console.log(type.key[1]);
+					$(makeDiv).trigger('create');	
+			})
+			$(appendLoc).trigger('create');
+		}	
+	});
+};
 
 var saveData = function(data){
-	key = $('#saveGameButton').data('key');
-	if (!key) {
-		var id = Math.floor(Math.random()*99999999);
-	} else {
-		var id = key;
+	var key = $('#saveGameButton').data('key');
+	var rev = $('#saveGameButton').data('rev');
+	//console.log('key');
+	//console.log('rev');
+	var type = {};
+	
+	if(rev){
+		type._id = key;
+		type._rev = rev;
 	}
-	var newGame = {};
-		newGame.console = data[0].value;
-		newGame.title = data[1].value;
-		newGame.rate = data[2].value;
-		newGame.note = data[3].value;
-
-		localStorage.setItem(id, JSON.stringify(newGame));
-		$('saveGameButton').html('Save Game').removeData('key');
-		alert("Game Saved");
-		$.mobile.changePage('#index');
-		console.log(newGame)
-}; 
-	
-var editGame = function (){
-console.log("edit function fired");
-	var data = $(this).data('key');
-	var gameValue = localStorage.getItem(data);
-	var game = JSON.parse(gameValue);
-console.log(data);
-console.log(gameValue);
-console.log(game);
-	
-	$('#console').val(game.console);
-	$('#title').val(game.title);
-	$('#rate').val(game.rate);
-	$('#note').val(game.note);
-	
-	console.log(console.value);
-	console.log(title.value)
-	console.log(rate.value)
-	console.log(note.value)
-};
-
-var	removeGame = function (){
-	var ask = confirm("Are you sure you want to delete this game?");
-	if (ask) {
-		localStorage.removeItem($(this).data('key'));
-		window.location.reload();
-	} else {
-		alert("Game wasn't deleted.");
-	}		
-};
+		type.console = data[0].value;
+		type.title = data[1].value;
+		type.rating = data[2].value;
+		type.notes = data[3].value;
 		
-var clearLocalData = function(){
+		//console.log(type);
+		
+		$.couch.db('gameorganizer').saveDoc(type,{
+			success: function(type){
+			alert("Game Saved");
+			$('#saveGameButton').html('Save Game').removeData('key').removeData('rev');
+			$.mobile.changePage('#index');
+			}
+		})
+};
+
+var editGame = function(){
+	var key = $(this).data('key');
+	var rev = $(this).data('rev');
+	
+	$.couch.db('gameorganizer').openDoc(key,{
+		success: function(type){
+			$('#console').val(type.console);
+			$('#title').val(type.title);
+			$('#rate').val(type.rating);
+			$('#note').val(type.notes);
+			$('saveGameButton').attr('value', "Edit Game").data('key', key).data('rev', rev);
+
+		}
+		
+	});
+};
+
+var removeGame = function(){
+	var ask = confirm("Are you sure you want to delete this game?");
+		if(ask){
+			var doc = {
+				'_id': $(this).data('key'),
+				'_rev': $(this).data('rev')
+			};
+			$.couch.db('gameorganizer').removeDoc(doc, {
+				success: function(data){
+					alert("Game Was Removed");
+					window.location.reload();
+				}
+			});
+		}else{
+			alert("Game wasn't Deleted.");
+		}
+};		
+/*var clearLocalData = function(){
 	console.log("fire");
 	if(localStorage === 0){
 		alert("There is nothing in local storage.")
@@ -223,5 +286,5 @@ var clearLocalData = function(){
 		window.location.reload();
 		return false;
 	}
-};
+};*/
 

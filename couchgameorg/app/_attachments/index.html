@@ -1,4 +1,4 @@
-<!ODCTYPE html>
+<!DOCTYPE html>
 <!--Michael Eaton-->
 <!--ASD 1305-->
 <!--Template-->
@@ -32,9 +32,7 @@
 				<section data-role="content" id="dataContent">
 					<a href="#addItem" data-role="button" id="addGames">Add a Game</a>
 					<a href="#gameList" data-role="button" id="listGames">View Game Library</a>
-					<a href="#" data-role="button" id="listjson">JSON Data</a>
-					<a href="#" data-role="button" id="listxml">XML Data</a>
-					<a href="#" data-role="button" id="clearData">Clear Local Storage</a>
+					
 				</section>
 				<section data-role="footer" data-position="fixed">
 					<nav data-role="navbar">
@@ -93,11 +91,11 @@
 					</div>
 					<div data-role="fieldcontain">
 						<label for="rate">Rate game from 1 to 10</label>
-						<input type="range" name="rate" id="rate" min="1" max="10" value="6">
+						<input type="range" name="rate" id="rate" min="1" max="10" value="1">
 					</div>
 					<div data-role="fieldcontain">
 						<label for="note">Notes or Review</label>
-						<textarea cols="30" rows="8" name="note" id="note"></textarea>
+						<textarea cols="30" rows="8" name="note" id="note" placeholder="Enter notes or a review of this game." class="required"></textarea>
 					</div>
 						<input type="submit" value="Add Game" id="saveGameButton" data-theme="b">
 						<input type="reset" value="Reset">
@@ -124,7 +122,7 @@
 					<br>
 					<br>
 					<p id="top">These are my Top Games</p>
-					<ul id="typeList" data-role="listview">
+					<ul id="typeList" data-role="listview" data-inset="true">
 					</ul>
 				</section>
 				<section data-role="footer" data-position="fixed">
@@ -136,6 +134,22 @@
 					</nav>
 				</section>
 			</section>
+			<section data-role="page" id="displayItem">
+				<section data-role="header" data-position="fixed"><h1>Game Library Organizer</h1></section>
+				<section data-role="content">
+					<ul id="itemView" data-role="listview" data-inset="true">
+					</ul>
+				</section>
+				<section data-role="footer" data-position="fixed">
+					<nav data-role="navbar">
+						<ul>
+							<li><a href="#index">Home</a></li>
+							<li><a href="#about" class="ui-btn-active">About</a></li>
+						</ul>
+					</nav>
+				</section>
+			</section>
+
 			<section data-role="page" id="gameList">
 				<section data-role="header" data-position="fixed"><h1>Game Library Organizer</h1></section>
 				<section data-role="content">
@@ -153,6 +167,8 @@
 	<script src="jquery-2.0.0.min.js" type="text/javascript"></script>
 	<script src="jquery.mobile-1.3.1.min.js" type="text/javascript"></script>
 	<script src="jquery.validate.min.js" type="text/javascript"></script>
+	<script src="jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<script src="jquery.couch.js" type="text/javascript"></script>
 	<script src="main.js" type="text/javascript"></script>
 	</body>
 	
